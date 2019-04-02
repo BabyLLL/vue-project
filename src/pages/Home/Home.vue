@@ -7,12 +7,12 @@
         <!--logo图-->
         <h1 class="logo">
           <a href="javascript:;">
-            <img src="./img/Logo.png" alt="">
+            <img src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/indexLogo-a90bdaae6b.png" alt="">
           </a>
         </h1>
         <!--search-->
         <div class="search">
-          <img src="./img/search.png" alt="">
+          <img src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-553dba3aff.png" alt="">
           <span>搜索商品，共222件物品</span>
         </div>
         <!--登录-->
@@ -27,7 +27,7 @@
           </ul>
         </div>
         <div class="nav-btn" @click="handleBtn">
-          <img ref="btnImg" src="./img/arrow-down.png" alt="">
+          <img ref="btnImg" src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/arrow-down-3-799ded53ea.png" alt="">
         </div>
         <div class="nav-all" v-if="isShow">
           <p>全部频道</p>
@@ -87,6 +87,7 @@
         click:true,
         scrollX: true
       })
+      this.$store.dispatch('getHomeData')
     }
   }
 </script>

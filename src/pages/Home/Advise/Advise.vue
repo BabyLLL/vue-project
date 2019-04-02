@@ -5,11 +5,10 @@
       <!--轮播图-->
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="../img/swiper.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="../img/swiper.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="../img/swiper.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="../img/swiper.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="../img/swiper.jpg" alt=""></div>
+          <div class="swiper-slide" v-for="(List,index) in homeData.focusList" :key="List.id">
+            <img v-lazy="List.picUrl+'?imageView&quality=75&thumbnail=750x0'" alt="">
+          </div>
+
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination swiper-pagination-customs"></div>
@@ -18,22 +17,10 @@
       <!--网易自营服务-->
       <div class="service">
         <ul class="service-list">
-          <li>
+          <li v-for="(policyDesc,index) in homeData.policyDescList">
             <a class="service-item" href="javascript:;">
               <i class="iconfont icon-account"></i>
-              <span>网易自营品牌</span>
-            </a>
-          </li>
-          <li>
-            <a class="service-item" href="javascript:;">
-              <i class="iconfont icon-account"></i>
-              <span>网易自营品牌</span>
-            </a>
-          </li>
-          <li>
-            <a class="service-item" href="javascript:;">
-              <i class="iconfont icon-account"></i>
-              <span>网易自营品牌</span>
+              <span>{{policyDesc.desc}}</span>
             </a>
           </li>
         </ul>
@@ -42,11 +29,11 @@
 
       <!--居家列表-->
       <div class="user_nav">
-        <ul class="user-list">
-          <li v-for="(userList,index) in userLists">
-            <a href="javascript:;">
-              <img src="../img/jujia.png" alt="">
-              <p>居家</p>
+        <ul class="user-list" :style="{backgroundColor:homeData.kingKongModule ? homeData.kingKongModule.norColor:'#000'}">
+          <li v-for="(kingKong,index) in homeData.kingKongModule ? homeData.kingKongModule.kingKongList:[]" :key="index">
+            <a :href="kingKong.schemeUrl">
+              <img v-lazy="kingKong.picUrl" alt="">
+              <p>{{kingKong.text}}</p>
             </a>
           </li>
         </ul>
@@ -63,7 +50,7 @@
               <p>新人专享礼包</p>
               <div class="new-img">
                 <div>
-                  <img src="../img/newPeron.png" alt="">
+                  <img v-lazy="'//yanxuan.nosdn.127.net/ba4d635ec94ad95b28bfab6500900659.png'" alt="">
                 </div>
               </div>
             </a>
@@ -77,7 +64,7 @@
                 </div>
                 <div class="weal-img">
                   <img
-                    src="http://yanxuan.nosdn.127.net/9f43502719c1a669d9063e199605bf0f.png?imageView&thumbnail=200x200&quality=75"
+                    v-lazy="'http://yanxuan.nosdn.127.net/9f43502719c1a669d9063e199605bf0f.png?imageView&thumbnail=200x200&quality=75'"
                     alt="">
                   <div class="new-money">
                     <p>￥109</p>
@@ -94,7 +81,7 @@
                 </div>
                 <div class="weal-img">
                   <img
-                    src="https://yanxuan.nosdn.127.net/b60e3b6a07a7a1673c82b0c1e1104382.png?imageView&thumbnail=200x200&quality=75"
+                    v-lazy="'https://yanxuan.nosdn.127.net/b60e3b6a07a7a1673c82b0c1e1104382.png?imageView&thumbnail=200x200&quality=75'"
                     alt="">
                   <div class="new-money">
                     <p>￥1</p>
@@ -118,59 +105,31 @@
           </a>
         </div>
         <ul class="direct-main">
-          <li>
+          <li v-for="(newProduct,index) in homeData.manufacturer?homeData.manufacturer.newProduct:[]" :key="index">
             <a class="main-wrap" href="javascript:;">
               <div class="main-img">
                 <div class="img-header">
-                  <p>海外制造商</p>
+                  <p>{{newProduct.name}}</p>
                   <p>
-                    <span>9.9元起</span>
+                    <span>{{newProduct.price}}</span>
                     <span class="new-active">上新</span>
                   </p>
                 </div>
-                <img src="../img/zhixiao.png" alt="">
+                <img v-lazy="newProduct.image" alt="">
               </div>
 
             </a>
           </li>
-          <li>
+          <li v-for="(product,index) in homeData.manufacturer?homeData.manufacturer.product:[]" :key="'product-'+index">
             <a class="main-wrap" href="javascript:;">
               <div class="main-img">
                 <div class="img-header">
-                  <p>海外制造商</p>
+                  <p>{{product.name}}</p>
                   <p>
-                    <span>9.9元起</span>
-                    <span class="new-active">上新</span>
+                    <span>{{product.price}}</span>
                   </p>
                 </div>
-                <img src="../img/zhixiao.png" alt="">
-              </div>
-
-            </a>
-          </li>
-          <li>
-            <a class="main-wrap" href="javascript:;">
-              <div class="main-img">
-                <div class="img-header">
-                  <p>海外制造商</p>
-                  <p>
-                    <span>219元起</span>
-                  </p>
-                </div>
-                <img src="../img/zhixiao.png" alt="">
-              </div>
-            </a>
-          </li>
-          <li>
-            <a class="main-wrap" href="javascript:;">
-              <div class="main-img">
-                <div class="img-header">
-                  <p>海外制造商</p>
-                  <p>
-                    <span>34.9元起</span>
-                  </p>
-                </div>
-                <img src="../img/zhixiao.png" alt="">
+                <img v-lazy="product.image" alt="">
               </div>
             </a>
           </li>
@@ -183,69 +142,25 @@
           <p>类目热销榜</p>
         </div>
         <div class="hot-main">
-          <div class="main-header">
-            <a class="item" href="javascript:;">
-              <p>热搜榜</p>
-              <img src="../img/resou.png" alt="">
-            </a>
-            <a class="item" href="javascript:;">
-              <p>热搜榜</p>
-              <img src="../img/resou.png" alt="">
-            </a>
 
+          <div class="main-header">
+            <a class="item" href="javascript:;" v-for="(hot,index) in homeData.hotBot?homeData.hotBot.hots:[]" :key="index">
+              <p>{{hot.name}}</p>
+              <img v-lazy="hot.image" alt="">
+            </a>
           </div>
+
           <div class="main-bottom">
             <ul class="main-list">
-              <li>
+              <li v-for="(commodity,index) in homeData.hotBot?homeData.hotBot.commoditys:[]" :key="'commodity-'+index">
                 <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;">
-                  <p>居家生活榜</p>
-                  <img src="../img/shenghuo.png" alt="">
+                  <p>{{commodity.name}}</p>
+                  <img v-lazy="commodity.image" alt="">
                 </a>
               </li>
             </ul>
           </div>
+
         </div>
 
       </div>
@@ -262,8 +177,7 @@
         <a class="recommend-main" href="javascript:;">
           <div>
             <img
-              src="https://yanxuan.nosdn.127.net/bbd83d44d6d8fc61031256143ad37c93.png?imageView&quality=65&thumbnail=280x280"
-              alt="">
+              v-lazy="homeData.popularItemList?homeData.popularItemList.popularMain.primaryPicUrl+'?imageView&quality=65&thumbnail=280x280':''" alt="">
           </div>
           <div class="every">
             <span class="item">每单满299减69</span>
@@ -275,47 +189,17 @@
         </a>
         <div class="recommend-bottom">
           <ul class="recommend-list">
-            <li>
+            <li v-for="(popular,index) in homeData.popularItemList?homeData.popularItemList.populars:[]">
               <a href="javascript:;">
                 <div class="img">
-                  <img src="../img/renqi.png" alt="">
+                  <img :src="popular.primaryPicUrl+'?imageView&quality=65&thumbnail=280x280'" alt="">
                 </div>
                 <div>
-                  <span>网易智造N520除螨吸尘器</span>
-                  <span class="money">￥499</span>
+                  <span>{{popular.name}}</span>
+                  <span class="money">￥{{popular.counterPrice}}</span>
                 </div>
                 <div>
                   <span class="hot-sale">爆品</span>
-                  <span class="hot-sale">限时购</span>
-                </div>
-
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div class="img">
-                  <img src="../img/renqi.png" alt="">
-                </div>
-                <div>
-                  <span>网易智造N520除螨吸尘器</span>
-                  <span class="money">￥499</span>
-                </div>
-                <div>
-                  <span class="full">满99减10</span>
-                </div>
-
-              </a>
-            </li>
-            <li>
-              <a href="javascript:;">
-                <div class="img">
-                  <img src="../img/renqi.png" alt="">
-                </div>
-                <div>
-                  <span>网易智造N520除螨吸尘器</span>
-                  <span class="money">￥499</span>
-                </div>
-                <div>
                   <span class="hot-sale">限时购</span>
                 </div>
 
@@ -329,36 +213,13 @@
       <!--实时好评-->
       <div class="scene_light">
         <ul class="scene-list">
-          <li>
-            <p>12月必买好货</p>
-            <p>冬日小确幸指南</p>
+          <li v-for="(scenes,index) in homeData.sceneLightShoppingGuideModule?homeData.sceneLightShoppingGuideModule:[]" :key="index">
+            <p>{{scenes.styleItem.title}}</p>
+            <p>{{scenes.styleItem.desc}}</p>
             <div class="img-list">
-              <img src="../img/anmo.png" alt="">
-              <img src="../img/anmo1.png" alt="">
-            </div>
-          </li>
-          <li>
-            <p>12月必买好货</p>
-            <p>冬日小确幸指南</p>
-            <div class="img-list">
-              <img src="../img/anmo.png" alt="">
-              <img src="../img/anmo1.png" alt="">
-            </div>
-          </li>
-          <li>
-            <p>12月必买好货</p>
-            <p>冬日小确幸指南</p>
-            <div class="img-list">
-              <img src="../img/anmo.png" alt="">
-              <img src="../img/anmo1.png" alt="">
-            </div>
-          </li>
-          <li>
-            <p>12月必买好货</p>
-            <p>冬日小确幸指南</p>
-            <div class="img-list">
-              <img src="../img/anmo.png" alt="">
-              <img src="../img/anmo1.png" alt="">
+              <span v-for="(scene,index) in scenes.styleItem.picUrlList" :key="index">
+                <img :src="scene+'?imageView&quality=65&thumbnail=280x280'" alt="">
+              </span>
             </div>
           </li>
         </ul>
@@ -366,10 +227,6 @@
 
       <!--引入外部组件为分类-->
       <CategoryItem/>
-      <CategoryItem/>
-      <CategoryItem/>
-      <CategoryItem/>
-
     </div>
   </div>
 
@@ -380,18 +237,14 @@
   import 'swiper/dist/css/swiper.css'
   import BScroll from 'better-scroll'
   import CategoryItem from '../../../components/CategoryItem/CategoryItem.vue'
+  import {mapState} from 'vuex'
   export default {
+
     components:{
       CategoryItem
     },
 
-    data(){
-      return{
-        userLists:['居家','居家','居家','居家','居家','居家','居家','居家','居家','居家']
-      }
-    },
     mounted() {
-      this._initSwiper();
       new BScroll('.bscoll-wrap',{
         click:true,
         mouseWheel: true,
@@ -400,7 +253,9 @@
           interactive: false // 1.8.0 新增
         }
       })
+
     },
+
     methods: {
       _initSwiper() {
         var mySwiper = new Swiper(".swiper-container", {
@@ -428,7 +283,22 @@
           }
         });
       }
+    },
+
+    computed:{
+      ...mapState({
+        homeData:state => state.home.homeData
+      })
+    },
+
+    watch:{
+      homeData(){
+        this.$nextTick(() => {
+          this._initSwiper();
+        })
+      }
     }
+
 
   }
 </script>
@@ -484,7 +354,6 @@
 
 
     .user_nav
-      background-color #eee
       .user-list
         display flex
         flex-wrap wrap
@@ -649,6 +518,8 @@
                   margin-top 10px
                   &:first-child
                     font-size 28px
+                    white-space nowrap
+                    text-align center
                   &:last-child
                     text-align center
                     .new-active

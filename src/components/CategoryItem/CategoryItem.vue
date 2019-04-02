@@ -1,19 +1,22 @@
 <template>
-  <div class="categoryItem-wrap">
-    <a class="category-img" href="javascript:;">
-      <img src="../../../static/img/fenlei.jpg" alt="">
-    </a>
+  <div>
+    <div class="categoryItem-wrap" v-for="(categoryModule,index) in homeData.categoryModule?homeData.categoryModule:[]">
+      <a class="category-img" href="javascript:;">
+        <img :src="categoryModule.titlePicUrl+'?imageView&quality=65&thumbnail=280x280'" alt="">
+      </a>
 
-    <div class="category-wrap">
-      <ul class="category-list">
-        <li v-for="(category,index) in categorys" :key="index">
-          <a href="javascript:;">
-            <div class="images"><img src="../../../static/img/fenlei1.png" alt=""></div>
-            <div><span>网易智造T300无线吸尘器</span></div>
-            <div class="category-money"><span>￥1599</span></div>
-          </a>
-        </li>
-      </ul>
+      <div class="category-wrap" :class="'category-wrap_'+index">
+        <ul class="category-list">
+          <li v-for="(category,index) in categoryModule.itemList" :key="index">
+            <a href="javascript:;">
+              <div class="images"><img :src="category.primaryPicUrl+'?imageView&quality=65&thumbnail=280x280'" alt=""></div>
+              <div><span>{{category.name}}</span></div>
+              <div class="category-money"><span>￥{{category.counterPrice}}</span></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
   </div>
@@ -22,18 +25,38 @@
 
 <script>
   import BScroll from 'better-scroll'
+  import {mapState} from 'vuex'
   export default {
-    data(){
-      return{
-        categorys:['1','1','1','1','1','1','1','1']
-      }
-    },
+
     mounted(){
-      new BScroll('.category-wrap',{
+      if(!this.homeData.categoryModule){
+        return
+      }
+      this.myScroll = new BScroll('.category-wrap',{
         click:true,
         scrollX: true
       })
+
+    },
+
+    computed:{
+      ...mapState({
+        homeData:state => state.home.homeData
+      })
+    },
+    watch:{
+      homeData(){
+        this.$nextTick(() => {
+          for (let i = 0; i < this.homeData.categoryModule.length; i++) {
+            new BScroll('.category-wrap_'+i,{
+              click:true,
+              scrollX: true
+            })
+          }
+        })
+      }
     }
+
   }
 </script>
 
