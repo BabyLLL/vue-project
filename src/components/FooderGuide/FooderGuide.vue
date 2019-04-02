@@ -17,7 +17,7 @@
           分类
         </span>
       </li>
-      <li @click="handleSkip('/discern')" :class="{active:$route.path === '/discern'}">
+      <li @click="handleSkip('/discern')" :class="{active:$route.path.indexOf('/discern') !== -1}">
         <span>
           <i class="iconfont icon--dangan"></i>
         </span>

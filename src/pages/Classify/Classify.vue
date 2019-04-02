@@ -1,6 +1,6 @@
 <template>
   <div class="classify-wrap">
-    <header class="header">
+    <header class="header" @click="$router.push('/search')">
       <div class="header-main">
         <a href="javascript:;">
           <i class="iconfont icon-sousuo"></i>
@@ -62,6 +62,7 @@
 
       }
     },
+
     watch:{
       categoryList(event){
         this.categorys = event[0].subCateList

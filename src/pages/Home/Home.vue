@@ -11,7 +11,7 @@
           </a>
         </h1>
         <!--search-->
-        <div class="search">
+        <div class="search" @click="handleSearch">
           <img src="http://yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-553dba3aff.png" alt="">
           <span>搜索商品，共222件物品</span>
         </div>
@@ -77,6 +77,9 @@
       handleList(index){
         this.indexs = index
         this.$router.push('/home/advise')
+      },
+      handleSearch(){
+        this.$router.push('/search')
       }
 
     },

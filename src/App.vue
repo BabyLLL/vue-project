@@ -1,9 +1,11 @@
 <template>
   <div id="app">
 
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
 
-    <FooderGuide/>
+    <FooderGuide v-if="$route.meta.isShow"/>
   </div>
 
 </template>
