@@ -1,6 +1,7 @@
 import Home from '../pages/Home/Home.vue'
 import Classify from '../pages/Classify/Classify.vue'
 import Person from '../pages/Person/Person.vue'
+import Login from '../pages/Login/Login.vue'
 import Discern from '../pages/Discern/Discern.vue'
 import Shop from '../pages/Shop/Shop.vue'
 import Advise from '../pages/Home/Advise/Advise.vue'
@@ -41,6 +42,10 @@ export default [
     meta:{
       isShow:true
     }
+  },
+  {
+    path:'/login',
+    component:Login
   },
   {
     path:'/discern',

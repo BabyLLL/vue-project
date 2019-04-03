@@ -1,8 +1,10 @@
 <template>
   <div class="discern-wrap">
-   <header class="header-wrap">
+
+    <header class="header-wrap">
+
      <div class="header-top">
-       <div class="skip-home">
+       <div class="skip-home" @click="$router.push('/home')">
          <a href="javascript:;">
            <i class="iconfont icon-shouye"></i>
          </a>
@@ -11,7 +13,7 @@
          <a href="javascript:;" class="active">发现</a>
          <a href="javascript:;">甄选家</a>
        </div>
-       <div class="skip-search">
+       <div class="skip-search" @click="$router.push('/search')">
          <a href="javascript:;">
            <i class="iconfont icon-sousuo"></i>
          </a>
@@ -30,6 +32,9 @@
      </div>
 
    </header>
+
+    <router-view/>
+
 
 
   </div>
@@ -71,7 +76,16 @@
 <style lang="stylus" rel="stylesheet/stylus">
 
   .discern-wrap
+    height 100%
+    background-color #eee
+    position relative
+    width 100%
     .header-wrap
+      width 100%
+      position fixed
+      left 0
+      top 0
+      z-index 2
       .header-top
         padding 0 20px
         display flex

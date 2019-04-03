@@ -15,6 +15,11 @@ export const reqMsg = (keywordPrefix) => ajax(api+'/xhr/search/searchAutoComplet
 
 export const reqTab = () => ajax(api+'/topic/v1/find/getTabs.json')
 
+export const reqManual= () => ajax(api+'/topic/v1/find/recManual.json')
+
+// http://m.you.163.com/topic/v1/find/recManual.json
+
+
 // http://m.you.163.com/topic/v1/find/getTabs.json
 
 // http://localhost:8081/api/xhr/search/searchAutoComplete.json?keywordPrefix=a

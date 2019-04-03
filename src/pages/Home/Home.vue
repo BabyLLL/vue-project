@@ -16,7 +16,7 @@
           <span>搜索商品，共222件物品</span>
         </div>
         <!--登录-->
-        <span class="login">登录</span>
+        <span class="login" @click="$router.push('/login')">登录</span>
       </div>
 
       <!--头部导航-->

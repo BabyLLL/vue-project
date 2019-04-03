@@ -20,7 +20,6 @@ const actions = {
    const result = await reqTab()
    if(result.data.code === '200'){
      const tabs = result.data.data
-     console.log(tabs)
      commit(RECEIVE_DISCERN,{tabs})
      typeof callback === 'function' && callback()
    }
