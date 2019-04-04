@@ -2,7 +2,7 @@
   <div class="login-wrap">
     <!--头部-->
     <div class="loginHeader">
-      <span @click="$router.replace('/home')"><i class="iconfont icon-shouye"></i></span>
+      <span @click="$router.replace('/home'),isShowPhone=false,isShowEmail=false"><i class="iconfont icon-shouye"></i></span>
       <span class="login-img"></span>
       <div class="searchShop">
         <span><i class="iconfont icon-sousuo" @click="$router.push('/search')"></i></span>
@@ -122,7 +122,7 @@
           }
 
         }else{
-          this.msgValue = '不能为空'
+          this.msgValue = ''
           return
         }
 
