@@ -6,7 +6,7 @@
         <div class="search-img"><img
           src="//yanxuan-static.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/search2-2fb94833aa.png"
           alt=""></div>
-        <input type="text" placeholder="请输入搜索内容" v-model="msg">
+        <input type="text" placeholder="请输入搜索内容" v-model="msg" @keyup.enter="handleSend">
       </div>
       <span @click="$router.back()">取消</span>
       <div class="search-result" v-if="list.length !== 0">
@@ -60,11 +60,12 @@
     methods:{
       handleDle(){
         this.msg = ''
+      },
+      handleSend(){
+        window.location.href = `https://m.you.163.com/search?keyword=${this.msg}`
+//        https://m.you.163.com/search?keyword=aaa&_stat_search=userhand
       }
     }
-
-
-
   }
 </script>
 

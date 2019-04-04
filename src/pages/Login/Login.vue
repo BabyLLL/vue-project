@@ -55,8 +55,9 @@
       <div class="form-wrap">
         <form @submit.prevent="foo">
           <div class="form-phone" v-if="isShowPhone">
-            <input type="text" placeholder="请输入手机号">
-            <input type="text" placeholder="请输入短信验证码">
+            <input type="text" placeholder="请输入手机号" v-model="phoneMsg">
+            <span v-text="msgValue" style="color: red"></span>
+            <input type="text" placeholder="请输入短信验证码" v-model="phoneCode">
             <div class="form-code">获取验证码</div>
             <div class="p-wrap">
               <p>遇到的问题?</p>
@@ -71,7 +72,6 @@
               <p>忘记密码</p>
             </div>
           </div>
-
           <button class="btn">登录</button>
         </form>
         <div class="login-footer">
@@ -86,12 +86,17 @@
 </template>
 <script>
   export default {
+
     data(){
       return{
         isShowPhone:false,
-        isShowEmail:false
+        isShowEmail:false,
+        phoneMsg:'',
+        msgValue:'',
+        phoneCode:''
       }
     },
+
     methods:{
       foo(e){
         e.preventDefault();
@@ -100,6 +105,27 @@
         } else {
           return true;
         }
+      }
+    },
+
+    watch:{
+      phoneMsg(e){
+        if(e.trim()){
+          if(!(/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/.test(e))){
+            this.msgValue = '请输入正确的手机号'
+            if(e.length>11 || e.length<11){
+              this.msgValue = '手机号位11位'
+            }
+            return
+          }else{
+            this.msgValue=''
+          }
+
+        }else{
+          this.msgValue = '不能为空'
+          return
+        }
+
       }
     }
   }

@@ -1,6 +1,7 @@
 <template>
   <div class="suggest-wrap">
     <div class="suggest-content">
+
       <div v-for="(manual,index) in manualData" :key="index">
 
         <div v-for="(items,index) in manual.topics" :key="index">
@@ -56,7 +57,6 @@
 
       </div>
     </div>
-
   </div>
 </template>
 
